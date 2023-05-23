@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model name="Выбор страны для отдыха" comment="выбираем, ехать ли на Мальдивы или в Геленджик">
+	<users>
+		<user name="Саша" id ="userId1" comment="эксперт по Мальдивам"></user>
+		<user name="Паша" id ="userId1" comment="эксперт по Геленджику"></user>
+	</users>
+
+	<hierarchy name ="Иерархия критериев для выбора страны отдыха">
+		<nodes>
+			<node name="Goal" id="nodeId0" parentID="" comment="коммент к Goal node"></node>
+			<node name="Критерий 1" id="nodeId1" parentID="nodeId1" comment="коммент к критерию 1"></node>
+			<node name="Критерий 2" id="nodeId2" parentID="nodeId1" comment="коммент к критерию 2"></node>
+			<node name="Критерий 3" id="nodeId3" parentID="nodeId1" comment="коммент к критерию 3"></node>
+		</nodes>
+	</hierarchy>
+
+	<judgments>
+		<userJudgments userId="userId">
+			<judgment parentNodeID="nodeId0" firstNodeId="nodeId1" secondNodeId="nodeId2" value="5" comment="some comment"></judgment>
+			<judgment parentNodeID="nodeId0" firstNodeId="nodeId2" secondNodeId="nodeId3" value="-6" comment="another comment"></judgment>
+			<judgment parentNodeID="nodeId0" firstNodeId="nodeId1" secondNodeId="nodeId3" value="4" comment="and another comment"></judgment>
+		</userJudgments>
+	</judgments>
+
+	<alternatives>
+		<alternative name="Мальдивы" id ="altId1" comment="здесь хорошо"></alternative>
+		<alternative name="Геленджик" id ="altId2" comment="здесь даже лучше, чем на Мальдивах"></alternative>
+	</alternatives>
+</model>
+
+
