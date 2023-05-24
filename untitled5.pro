@@ -8,9 +8,13 @@ CONFIG += c++20
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += $$files("*.cpp", true)
+SOURCES += $$files("*.cpp", true) \
+    command/icommand.cpp
 
-HEADERS += $$files("*.h", true)
+
+HEADERS += $$files("*.h", true) \
+    command/icommand.h
+
 
 HEADERS += $$files("*.hpp", true)
 

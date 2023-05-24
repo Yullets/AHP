@@ -27,6 +27,10 @@ public:
 
     matrix::Matrix<double> getJudgmentsMatrix(ID_t userID);
 
+    Node *getParent() const;
+
+    void setParent(Node *parent);
+
 private:
     EigenCalculator                               * eigenCalculator;
     std::map<ID_t, std::vector<PairwiseJudgment>> judgments;

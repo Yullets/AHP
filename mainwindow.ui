@@ -14,30 +14,27 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="b_loadFile">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>83</width>
+      <x>30</x>
+      <y>20</y>
+      <width>331</width>
       <height>29</height>
      </rect>
     </property>
     <property name="text">
-     <string>Загрузить</string>
+     <string>загрузить файл</string>
     </property>
    </widget>
-   <widget class="QTreeWidget" name="treeWidget">
+   <widget class="QTreeWidget" name="trw_hierarchy">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>256</width>
+      <x>30</x>
+      <y>70</y>
+      <width>331</width>
       <height>192</height>
      </rect>
-    </property>
-    <property name="columnCount">
-     <number>1</number>
     </property>
     <column>
      <property name="text">
@@ -45,24 +42,50 @@
      </property>
     </column>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QListWidget" name="lw_list">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>60</y>
+      <x>520</x>
+      <y>70</y>
       <width>256</width>
       <height>192</height>
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QTableWidget" name="tw_table">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>310</y>
-      <width>256</width>
+      <x>30</x>
+      <y>330</y>
+      <width>331</width>
       <height>192</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>40</y>
+      <width>251</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Альтернативы</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>331</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Обратно-симметричная матрица</string>
     </property>
    </widget>
   </widget>

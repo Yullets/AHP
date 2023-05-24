@@ -13,14 +13,11 @@ EigenCalculator::getPairwiseMatrix() const {
 void EigenCalculator::setPairwiseMatrix(
         const matrix_t &pairwiseMatrix) {
     EigenCalculator::pairwiseMatrix = pairwiseMatrix;
+    matrixSize = getMatrixSize();
 }
 
 int EigenCalculator::getMatrixSize() const {
-    return matrixSize;
-}
-
-void EigenCalculator::setMatrixSize(int matrixSize) {
-    EigenCalculator::matrixSize = matrixSize;
+    return pairwiseMatrix.nRows();
 }
 
 void

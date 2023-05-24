@@ -85,6 +85,18 @@ namespace matrix {
                 }
             }
         }
+
+//        Matrix(const Matrix& matrix):Matrix(matrix.nRows(), matrix.nCols()) {
+//            for(auto rowIndex = 0; rowIndex < matrix.nRows(); rowIndex++){
+//                for(auto colIndex = 0; colIndex < matrix.nCols(); colIndex++){
+//                    (*this)(rowIndex, colIndex) = matrix(rowIndex, colIndex);
+//                }
+
+//            }
+//        }
+
+
+
         //endregion
 
         [[nodiscard]] SizeType nRows() const {

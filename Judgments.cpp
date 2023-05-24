@@ -11,10 +11,6 @@ EigenCalculator* Judgments::getEigenCalculator() const {
     return eigenCalculator;
 }
 
-void Judgments::setEigenCalculator(EigenCalculator* eigenCalculator) {
-    Judgments::eigenCalculator = eigenCalculator;
-}
-
 std::map<ID_t, std::vector<PairwiseJudgment>>& Judgments::getJudgments() {
     return judgments;
 }
@@ -25,14 +21,22 @@ void Judgments::setJudgments(
 }
 
 matrix::Matrix<double> Judgments::getJudgmentsMatrix(ID_t userID) {
-    matrix::Matrix<double> m(parent->getChildren().size(),
-                             parent->getChildren().size());
+    int n;
+    if (parent->getChildren().empty()) n = getParent()->getHierarchy()->getModel()->getAlternatives().size();
+    else n = parent->getChildren().size();
+    matrix::Matrix<double> m(n, n);
 
     std::map<ID_t, int> indexes;
     {
         int      index = 0;
-        for (auto& child: parent->getChildren()) {
-            indexes.insert({child.first, index++});
+        if(parent->getChildren().empty()) {
+            for(auto& alternative: getParent()->getHierarchy()->getModel()->getAlternatives()) {
+                indexes.insert({alternative.first, index++});
+            }
+        } else {
+            for (auto& child: parent->getChildren()) {
+                indexes.insert({child.first, index++});
+            }
         }
     }
 
@@ -50,14 +54,23 @@ matrix::Matrix<double> Judgments::getJudgmentsMatrix(ID_t userID) {
         }
     }
 
-    for (int i = 0; i < judgments.size(); i++) {
-        m[i][i] = 1;
+    for (int i = 0; i < m.nRows(); i++) {
+        m(i, i) = 1;
     }
 
-    //TODO: not implemented!!!!!
-    throw std::runtime_error("not implemented exception method: getJudgmentsMatrix");
+    eigenCalculator->setPairwiseMatrix(m);
+
+    return m;
 }
 
 Judgments::Judgments(Node* parent) : parent(parent) {
+    eigenCalculator = new EigenCalculator();
+}
 
+Node *Judgments::getParent() const {
+    return parent;
+}
+
+void Judgments::setParent(Node *parent) {
+    Judgments::parent = parent;
 }

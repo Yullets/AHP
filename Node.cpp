@@ -58,13 +58,34 @@ void Node::calculateLocalPriorities(ID_t UserID) {
     Graph<int> g(res);
     std::vector<double> eigenVector;
     double lambda;
-    if(g.isConnectedGraph()) {
-        judgments->getEigenCalculator()->calculateEigenVector(eigenVector, lambda, 0.1, 50);
-    }
+//    if(g.isConnectedGraph()) {
+//        judgments->getEigenCalculator()->calculateEigenVector(eigenVector, lambda, 0.1, 50);
+//    }
 
+    judgments->getEigenCalculator()->calculateEigenVector(eigenVector, lambda, 0.1, 50);
+    if(!getChildren().empty()) {
+        setLocalPrioritiesForChildren(eigenVector);
+    } else {
+        setLocalPrioritiesForAlternative(eigenVector);
+    }
+}
+
+void Node::setLocalPrioritiesForChildren(std::vector<double> &eigenVector) {
     int index = 0;
     for(auto &child: this->getChildren()) {
         child.second->localPriority = eigenVector[index++];
+    }
+}
+
+void Node::setLocalPrioritiesForAlternative(std::vector<double> &eigenVector) {
+    std::map<ID_t, Alternative> &alternative = this->getHierarchy()->getModel()->getAlternatives();
+    ID_t nodeID = getId();
+
+    int index = 0;
+    for(auto &pair: alternative) {
+        std::pair<ID_t, double> onePriority = {nodeID, eigenVector[index++]};
+//        pair.second.getLocalPriorities().insert(onePriority);
+        pair.second.setOneLocalPriority(onePriority);
     }
 }
 

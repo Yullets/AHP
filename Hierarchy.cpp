@@ -104,3 +104,32 @@ void Hierarchy::calculateGlobalPriorities(Node *node) {
         calculateGlobalPriorities(child.second);
     }
 }
+
+Hierarchy::Hierarchy(Model* m) {
+    model = m;
+}
+
+Model *Hierarchy::getModel() {
+    return model;
+}
+
+std::map<ID_t, Node *> Hierarchy::getTerminalNodes() {
+    std::map<ID_t, Node*> terminalNodes;
+
+    for(auto &node: nodes) {
+        if(node.second->getChildren().empty()) {
+            terminalNodes.insert(node);
+        }
+    }
+
+    return terminalNodes;
+}
+
+void Hierarchy::calculateLocalPriorities(Node *node)
+{
+    node->calculateLocalPriorities(1);
+    for(auto &child: node->getChildren()) {
+        child.second->calculateLocalPriorities(1);
+    }
+}
+

@@ -18,8 +18,20 @@ public:
 
     void setParents(const std::map<ID_t, Node*>& parents);
 
+    const std::map<ID_t, double> &getLocalPriorities() const;
+
+    void setLocalPriorities(const std::map<ID_t, double> &localPriorities);
+
+    double getGlobalPriority() const;
+
+    void setGlobalPriority(double globalPriority);
+
+    void setOneLocalPriority(std::pair<ID_t, double> &localPriority);
+
 private:
     std::map<ID_t, Node*> parents;
+    std::map<ID_t, double> localPriorities = {};
+    double globalPriority = 0;
 };
 
 

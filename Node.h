@@ -14,6 +14,7 @@ class Node;
 #include "Judgments.h"
 #include "Hierarchy.h"
 #include "graph.hpp"
+#include "Alternative.h"
 
 class Node : public CommonObject {
 public:
@@ -51,6 +52,12 @@ public:
 
     Hierarchy *getHierarchy() const;
     void setHierarchy(Hierarchy *newHierarchy);
+
+    void getLocalPriorities(ID_t UserID);
+
+    void setLocalPrioritiesForChildren(std::vector<double> &eigenVector);
+
+    void setLocalPrioritiesForAlternative(std::vector<double> &eigenVector);
 
 private:
     Node* parent;

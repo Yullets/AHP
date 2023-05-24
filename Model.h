@@ -14,7 +14,7 @@ class Model;
 
 class Model : public CommonObject {
 public:
-    Model() {}
+    Model();
 
     Model(ID_t id, const std::string &name, const std::string &comment);
 
@@ -22,7 +22,7 @@ public:
 
     void setHierarchy(Hierarchy* hierarchy);
 
-    const std::map<ID_t, Alternative>& getAlternatives() const;
+    std::map<ID_t, Alternative>& getAlternatives() ;
 
     void setAlternatives(const std::map<ID_t, Alternative>& alternatives);
     void addElternative(const Alternative& alternative);
@@ -32,15 +32,16 @@ public:
 
     void setUsers(const std::map<ID_t, User*>& users);
 
-    Storage* getStorage() const;
+    //    Storage* getStorage() const;
 
-    void setStorage(Storage* storage);
+    //    void setStorage(Storage* storage);
+
+    void calculateGlobalPrioritiesForAlternatives();
 
 private:
     Hierarchy* hierarchy;
     std::map<ID_t, Alternative> alternatives;
     std::map<ID_t, User*>       users;
-    Storage* storage;
 };
 
 #endif //AHR_MODEL_H
